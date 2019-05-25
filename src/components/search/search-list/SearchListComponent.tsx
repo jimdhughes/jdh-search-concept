@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { getCoinProvider } from '../../../providers/CoinProvider';
 import { getCurrencyProvider } from '../../../providers/CurrencyProvider';
-import { getTrafficProvider } from '../../../providers/TrafficProviider';
+import { getTrafficProvider } from '../../../providers/TrafficProvider';
 
 export interface ISearchResult {
   businessUnit: string;
