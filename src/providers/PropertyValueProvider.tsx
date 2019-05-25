@@ -23,6 +23,7 @@ import { Card, CardContent, Typography } from '@material-ui/core';
 interface IPropertyValue {
   account_number: string;
   house_number: string;
+  suite: string;
   street_name: string;
   total_asmt: string;
   tax_class: string;
@@ -72,7 +73,8 @@ function getPropertyValueRenderer(x: ISearchResult): JSX.Element {
           House Valuation
         </Typography>
         <Typography variant="body2" component="p">
-          {obj.house_number} - {obj.street_name} @ {obj.total_asmt}
+          {obj.suite ? obj.suite + ' - ' : ''} {obj.house_number} - {obj.street_name} @{' '}
+          {obj.total_asmt}
         </Typography>
       </CardContent>
     </Card>

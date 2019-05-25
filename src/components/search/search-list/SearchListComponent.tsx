@@ -26,6 +26,11 @@ interface IResult {
 
 interface IProps {}
 
+const style: React.CSSProperties = {
+  height: '100vh',
+  overflowY: 'scroll'
+};
+
 class SearchListComponent extends React.Component<IProps, IState> {
   constructor(props: IProps, state: IState) {
     super(props, state);
@@ -61,7 +66,7 @@ class SearchListComponent extends React.Component<IProps, IState> {
       <div>
         <input type="text" onChange={this.onTermChange} />
         <button onClick={this.onSearch}>Search</button>
-        {results.map(x => x.element)}
+        <div style={style}>{results.map(x => x.element)}</div>
       </div>
     );
   }
