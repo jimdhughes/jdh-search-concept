@@ -56,7 +56,7 @@ class SearchListComponent extends React.Component<IProps, IState> {
         results.push({ result: res[j], element: await x.renderer(res[j]) });
       }
     }
-    results.sort((a, b) => (a.result.businessUnit < b.result.businessUnit ? 0 : 1));
+    results.sort((a, b) => (a.result.businessUnit < b.result.businessUnit ? 1 : -1));
     this.setState({ results });
   };
 
