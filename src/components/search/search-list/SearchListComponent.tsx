@@ -16,7 +16,12 @@ export interface ISearchProvider {
 interface IState {
   term: string;
   providers: ISearchProvider[];
-  results: JSX.Element[];
+  results: IResult[];
+}
+
+interface IResult {
+  element: JSX.Element;
+  result: ISearchResult;
 }
 
 interface IProps {}
@@ -38,14 +43,17 @@ class SearchListComponent extends React.Component<IProps, IState> {
   };
 
   onSearch = async () => {
-    let results: JSX.Element[] = [];
+    let results: IResult[] = [];
     for (let i = 0; i < this.state.providers.length; i++) {
       let x = this.state.providers[i];
+      console.log(x);
       let res = await x.command(this.state.term);
-      let elements = await Promise.all(res.map(x.renderer));
-      results = [...results, ...elements];
+      for (let j = 0; j < res.length; j++) {
+        results.push({ result: res[j], element: await x.renderer(res[j]) });
+      }
     }
     console.log(results);
+    results.sort((a, b) => (a.result.businessUnit < b.result.businessUnit ? 0 : 1));
     this.setState({ results });
   };
 
@@ -54,8 +62,8 @@ class SearchListComponent extends React.Component<IProps, IState> {
     return (
       <div>
         <input type="text" onChange={this.onTermChange} />
-        <button onClick={this.onSearch} />
-        {results}
+        <button onClick={this.onSearch}>Search</button>
+        {results.map(x => x.element)}
       </div>
     );
   }

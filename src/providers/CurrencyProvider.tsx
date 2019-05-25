@@ -2,7 +2,7 @@ import {
   ISearchProvider,
   ISearchResult
 } from '../components/search/search-list/SearchListComponent';
-import { getCoinInfo, getCurrencyConversionFromBase } from '../services/data.services';
+import { getCurrencyConversionFromBase } from '../services/data.services';
 import * as React from 'react';
 
 export function getCurrencyProvider(): ISearchProvider {
@@ -14,18 +14,22 @@ export function getCurrencyProvider(): ISearchProvider {
 
 function mapCurrencySearchResult(results: any[]): ISearchResult {
   return {
-    businessUnit: 'Coin Info',
+    businessUnit: 'CurrencyInfo',
     type: 'crypto',
     results: results
   };
 }
 
 async function getCurrencyConversion(id: string): Promise<ISearchResult[]> {
-  let currency = await getCurrencyConversionFromBase(id);
-  if (!(currency instanceof Array)) {
-    currency = [currency];
+  try {
+    let currency = await getCurrencyConversionFromBase(id);
+    if (!(currency instanceof Array)) {
+      currency = [currency];
+    }
+    return currency.map(mapCurrencySearchResult);
+  } catch (e) {
+    return [];
   }
-  return currency.map(mapCurrencySearchResult);
 }
 
 function getCurrencyConversionRenderer(x: ISearchResult): JSX.Element {

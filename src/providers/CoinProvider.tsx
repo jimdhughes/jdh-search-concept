@@ -14,18 +14,22 @@ export function getCoinProvider(): ISearchProvider {
 
 function mapCoinSearchResult(results: any[]): ISearchResult {
   return {
-    businessUnit: 'Coin Info',
+    businessUnit: 'Crypto Currency',
     type: 'crypto',
     results: results
   };
 }
 
 async function getCoinInfoSearch(id: string): Promise<ISearchResult[]> {
-  let days = await getCoinInfo(id);
-  if (!(days instanceof Array)) {
-    days = [days];
+  try {
+    let coins = await getCoinInfo(id);
+    if (!(coins instanceof Array)) {
+      coins = [coins];
+    }
+    return coins.map(mapCoinSearchResult);
+  } catch (e) {
+    return [];
   }
-  return days.map(mapCoinSearchResult);
 }
 
 function getCoinInfoRenderer(x: ISearchResult): JSX.Element {
