@@ -5,8 +5,8 @@ import { Grid } from '@material-ui/core';
 
 const styles = {
   height: '100vh',
-  width: '100vw',
-}
+  width: '100vw'
+};
 
 const App: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const App: React.FC = () => {
       </Grid>
       <Grid item xs={8}>
         <div style={styles}>
-          <MapComponent/>
+          <MapComponent />
         </div>
       </Grid>
     </Grid>

@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { getCoinProvider } from '../../../providers/CoinProvider';
-import { getCurrencyProvider } from '../../../providers/CurrencyProvider';
 import { getTrafficProvider } from '../../../providers/TrafficProvider';
+import { getPropertyValueProvider } from '../../../providers/PropertyValueProvider';
 
 export interface ISearchResult {
   businessUnit: string;
   type: string;
-  results: any[];
+  result: any;
 }
 
 export interface ISearchProvider {
@@ -33,7 +32,7 @@ class SearchListComponent extends React.Component<IProps, IState> {
     this.state = {
       term: '',
       results: [],
-      providers: [getCoinProvider(), getCurrencyProvider(), getTrafficProvider()]
+      providers: [getTrafficProvider(), getPropertyValueProvider()]
     };
   }
 
@@ -47,13 +46,11 @@ class SearchListComponent extends React.Component<IProps, IState> {
     let results: IResult[] = [];
     for (let i = 0; i < this.state.providers.length; i++) {
       let x = this.state.providers[i];
-      console.log(x);
       let res = await x.command(this.state.term);
       for (let j = 0; j < res.length; j++) {
         results.push({ result: res[j], element: await x.renderer(res[j]) });
       }
     }
-    console.log(results);
     results.sort((a, b) => (a.result.businessUnit < b.result.businessUnit ? 0 : 1));
     this.setState({ results });
   };
