@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { getCoinProvider } from '../../../providers/CoinProvider';
 import { getCurrencyProvider } from '../../../providers/CurrencyProvider';
+import { getTrafficProvider } from '../../../providers/TrafficProviider';
 
 export interface ISearchResult {
   businessUnit: string;
@@ -32,7 +33,7 @@ class SearchListComponent extends React.Component<IProps, IState> {
     this.state = {
       term: '',
       results: [],
-      providers: [getCoinProvider(), getCurrencyProvider()]
+      providers: [getCoinProvider(), getCurrencyProvider(), getTrafficProvider()]
     };
   }
 
