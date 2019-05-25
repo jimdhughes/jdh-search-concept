@@ -40,3 +40,7 @@ function getCoinInfoRenderer(x: ISearchResult): JSX.Element {
     </div>
   );
 }
+
+function navigateToDetail(x: ISearchResult) {
+
+}
