@@ -5,8 +5,7 @@ import { Grid } from '@material-ui/core';
 import store from './stores/store';
 
 const styles = {
-  height: '100vh',
-  width: '100vw'
+  height: '100vh'
 };
 
 const App: React.FC = () => {
