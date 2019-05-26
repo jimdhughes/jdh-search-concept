@@ -4,7 +4,6 @@ import {
 } from '../components/search/search-list/SearchListComponent';
 import { getTrafficByImpact, getPropertyValues } from '../services/data.services';
 import * as React from 'react';
-import { StringifyOptions } from 'querystring';
 import { Card, CardContent, Typography } from '@material-ui/core';
 
 /**
@@ -30,7 +29,7 @@ interface IPropertyValue {
   neighbourhood_id: string;
   ward: string;
   garage: string;
-  latitude: StringifyOptions;
+  latitude: string;
   longitude: string;
 }
 
