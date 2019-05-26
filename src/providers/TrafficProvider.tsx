@@ -8,30 +8,6 @@ import { Card, CardContent, Typography, CardActions, Button } from '@material-ui
 import store from '../stores/store';
 import { SET_MAP_CENTER, SET_MAP_ZOOM } from '../stores/map/types';
 
-/**
- "disruption_number": "8",
-"starting_date": "2018-12-05T00:00:00",
-"impact": "Travel Delays",
-"description": "Right Turn Bay Construction",
-"duration": "Up To 7 Months",
-"finish_date": "2019-06-30T00:00:00",
-"date_issued": "2019-01-16T00:00:00",
-"traffic_district": "Northwest",
-"infrastructure": "Road and Sidewalk",
-"activity_type": "Construction",
-"from": "111 Avenue NW",
-"details": "As part of the 2018 - 111 Ave, 142 St - 149 St Rehabilitation Project, the 149 St northbound to eastbound right turn bay at 111ave will remain closed until June 2019. Pedestrian access will be maintained via a temporary walkway to access the intersection",
-"location": {
-"latitude": "53.558897550328254",
-"human_address": "{\"address\":\"\",\"city\":\"\",\"state\":\"\",\"zip\":\"\"}",
-"needs_recoding": false,
-"longitude": "-113.57807459215901"
-},
-"closure": "149 St NB To EB Right Turn Bay Construction",
-"status": "Current",
-"on": "149 Street NW"
- */
-
 interface ILoc {
   latitude: string;
   longitude: string;

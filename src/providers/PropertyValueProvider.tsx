@@ -8,19 +8,6 @@ import { Card, CardContent, Typography, CardActions, Button } from '@material-ui
 import store from '../stores/store';
 import { SET_MAP_CENTER, SET_MAP_ZOOM } from '../stores/map/types';
 
-/**
- * "account_number": "10202374",
-"house_number": "455",
-"street_name": "MCCONACHIE WAY NW",
-"total_asmt": "381500",
-"tax_class": "Residential",
-"neighbourhood_id": "2521",
-"neighbourhood": "MCCONACHIE AREA",
-"ward": "Ward 3",
-"garage": "Y",
-"latitude": "53.6308420714181",
-"longitude": "-113.428512065557"
- */
 interface IPropertyValue {
   account_number: string;
   house_number: string;
