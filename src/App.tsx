@@ -2,7 +2,6 @@ import React from 'react';
 import SearchListComponent from './components/search/search-list/SearchListComponent';
 import MapComponent from './components/map/MapComponent';
 import { Grid } from '@material-ui/core';
-import store from './stores/store';
 
 const styles = {
   height: '100vh'

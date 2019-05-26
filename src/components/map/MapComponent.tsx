@@ -19,10 +19,6 @@ class MapComponent extends React.Component<IProps> {
   view: __esri.MapView | null = null;
   map: __esri.Map | null = null;
 
-  constructor(props: IProps) {
-    super(props);
-  }
-
   componentDidMount() {
     this.initMap();
   }
@@ -33,7 +29,7 @@ class MapComponent extends React.Component<IProps> {
     if (this.props.center !== prevProps.center) {
       this.updateCenter();
     }
-    if(this.props.focus) {
+    if (this.props.focus) {
       console.log('setting focus');
       this.setFocus();
     } else {
@@ -42,16 +38,16 @@ class MapComponent extends React.Component<IProps> {
   }
 
   async setFocus() {
-    if(this.view){
+    if (this.view) {
       this.view.graphics.removeAll();
-      if(this.props.focus){
+      if (this.props.focus) {
         const [Graphic, Point] = await loadModules(['esri/Graphic', 'esri/geometry/Point']);
         const graphic: __esri.Graphic = new Graphic({
           symbol: {
-            type:'simple-marker'
+            type: 'simple-marker'
           },
           geometry: new Point({
-            type: "point",
+            type: 'point',
             latitude: this.props.focus.lat,
             longitude: this.props.focus.lon
           })
@@ -59,12 +55,9 @@ class MapComponent extends React.Component<IProps> {
         this.view.graphics.add(graphic);
       }
     }
-   
   }
 
-  clearFocus() {
-
-  }
+  clearFocus() {}
 
   updateZoom() {
     if (this.view) {
