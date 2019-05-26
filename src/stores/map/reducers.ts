@@ -2,10 +2,10 @@ import { IMapState, MapActionTypes, SET_MAP_CENTER, SET_MAP_ZOOM } from './types
 
 const initialState: IMapState = {
   center: {
-    lat: 53.5444,
-    lon: -113.4909
+    lat: 53.545883,
+    lon: -113.490112
   },
-  zoom: 12
+  zoom: 11
 };
 
 export function mapReducer(state = initialState, action: MapActionTypes): IMapState {

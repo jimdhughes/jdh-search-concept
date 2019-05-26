@@ -56,8 +56,8 @@ class MapComponent extends React.Component<IProps> {
     this.view = new MapView({
       container: 'mapComponent',
       map: this.map,
-      center: [-118.71511, 34.09042],
-      zoom: 11
+      center: [this.props.center.lon, this.props.center.lat],
+      zoom: this.props.zoom
     });
   };
 
