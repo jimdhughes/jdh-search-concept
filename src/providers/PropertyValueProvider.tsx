@@ -55,7 +55,7 @@ function setMapCenter(x: IPropertyValue) {
   });
   store.dispatch({
     type: SET_MAP_ZOOM,
-    payload: 19
+    payload: 14
   });
 }
 

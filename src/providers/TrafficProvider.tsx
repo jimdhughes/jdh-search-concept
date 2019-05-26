@@ -65,7 +65,7 @@ function setMapCenter(x: ITrafficModel) {
   });
   store.dispatch({
     type: SET_MAP_ZOOM,
-    payload: 19
+    payload: 14
   });
 }
 

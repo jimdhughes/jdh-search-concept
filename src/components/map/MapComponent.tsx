@@ -43,10 +43,12 @@ class MapComponent extends React.Component<IProps> {
   async updateCenter() {
     const [Point] = await loadModules(['esri/geometry/Point']);
     if (this.view) {
-      this.view.center = new Point({
-        longitude: this.props.center.lon,
-        latitude: this.props.center.lat
-      });
+      this.view.goTo(
+        new Point({
+          longitude: this.props.center.lon,
+          latitude: this.props.center.lat
+        })
+      );
     }
   }
 
