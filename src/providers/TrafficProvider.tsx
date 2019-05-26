@@ -6,7 +6,7 @@ import { getTrafficByImpact } from '../services/data.services';
 import * as React from 'react';
 import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import store from '../stores/store';
-import { SET_MAP_CENTER, SET_MAP_ZOOM } from '../stores/map/types';
+import { SET_MAP_CENTER, SET_MAP_ZOOM, SET_MAP_FOCUS } from '../stores/map/types';
 
 interface ILoc {
   latitude: string;
@@ -66,6 +66,10 @@ function setMapCenter(x: ITrafficModel) {
   store.dispatch({
     type: SET_MAP_ZOOM,
     payload: 14
+  });
+  store.dispatch({
+    type: SET_MAP_FOCUS,
+    payload:{ lat: parseFloat(x.location.latitude), lon: parseFloat(x.location.longitude) }
   });
 }
 

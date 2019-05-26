@@ -12,6 +12,7 @@ const styles = {
 interface IProps {
   center: ILocation;
   zoom: number;
+  focus: ILocation | null;
 }
 
 class MapComponent extends React.Component<IProps> {
@@ -32,6 +33,37 @@ class MapComponent extends React.Component<IProps> {
     if (this.props.center !== prevProps.center) {
       this.updateCenter();
     }
+    if(this.props.focus) {
+      console.log('setting focus');
+      this.setFocus();
+    } else {
+      this.clearFocus();
+    }
+  }
+
+  async setFocus() {
+    if(this.view){
+      this.view.graphics.removeAll();
+      if(this.props.focus){
+        const [Graphic, Point] = await loadModules(['esri/Graphic', 'esri/geometry/Point']);
+        const graphic: __esri.Graphic = new Graphic({
+          symbol: {
+            type:'simple-marker'
+          },
+          geometry: new Point({
+            type: "point",
+            latitude: this.props.focus.lat,
+            longitude: this.props.focus.lon
+          })
+        });
+        this.view.graphics.add(graphic);
+      }
+    }
+   
+  }
+
+  clearFocus() {
+
   }
 
   updateZoom() {
@@ -71,7 +103,8 @@ class MapComponent extends React.Component<IProps> {
 const mapStateToProps = (state: IAppState) => {
   const center = state.map.center;
   const zoom = state.map.zoom;
-  return { center, zoom };
+  const focus = state.map.focus;
+  return { center, zoom, focus };
 };
 
 export default connect(mapStateToProps)(MapComponent);
