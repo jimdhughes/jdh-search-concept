@@ -4,7 +4,10 @@ import {
 } from '../components/search/search-list/SearchListComponent';
 import { getTrafficByImpact } from '../services/data.services';
 import * as React from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
+import store from '../stores/store';
+import { SET_MAP_CENTER, SET_MAP_ZOOM } from '../stores/map/types';
+
 /**
  "disruption_number": "8",
 "starting_date": "2018-12-05T00:00:00",
@@ -79,6 +82,17 @@ async function getTrafficData(id: string): Promise<ISearchResult[]> {
   }
 }
 
+function setMapCenter(x: ITrafficModel) {
+  store.dispatch({
+    type: SET_MAP_CENTER,
+    payload: { lat: parseFloat(x.location.latitude), lon: parseFloat(x.location.longitude) }
+  });
+  store.dispatch({
+    type: SET_MAP_ZOOM,
+    payload: 19
+  });
+}
+
 function getTrafficRenderer(x: ISearchResult): JSX.Element {
   let obj: ITrafficModel = x.result as ITrafficModel;
   return (
@@ -94,9 +108,12 @@ function getTrafficRenderer(x: ISearchResult): JSX.Element {
           {obj.starting_date} to {obj.finish_date}
         </Typography>
         <Typography variant="body1" component="p">
-          {obj.description}
+          {obj.closure}
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button onClick={() => setMapCenter(obj)}>Go To</Button>
+      </CardActions>
     </Card>
   );
 }

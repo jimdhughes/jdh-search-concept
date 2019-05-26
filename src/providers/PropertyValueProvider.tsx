@@ -2,10 +2,12 @@ import {
   ISearchProvider,
   ISearchResult
 } from '../components/search/search-list/SearchListComponent';
-import { getTrafficByImpact, getPropertyValues } from '../services/data.services';
+import { getPropertyValues } from '../services/data.services';
 import * as React from 'react';
 import { StringifyOptions } from 'querystring';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
+import store from '../stores/store';
+import { SET_MAP_CENTER, SET_MAP_ZOOM } from '../stores/map/types';
 
 /**
  * "account_number": "10202374",
@@ -30,7 +32,7 @@ interface IPropertyValue {
   neighbourhood_id: string;
   ward: string;
   garage: string;
-  latitude: StringifyOptions;
+  latitude: string;
   longitude: string;
 }
 
@@ -60,6 +62,16 @@ async function getPropertyValueData(id: string): Promise<ISearchResult[]> {
     return [];
   }
 }
+function setMapCenter(x: IPropertyValue) {
+  store.dispatch({
+    type: SET_MAP_CENTER,
+    payload: { lat: parseFloat(x.latitude), lon: parseFloat(x.longitude) }
+  });
+  store.dispatch({
+    type: SET_MAP_ZOOM,
+    payload: 19
+  });
+}
 
 function getPropertyValueRenderer(x: ISearchResult): JSX.Element {
   let obj: IPropertyValue = x.result as IPropertyValue;
@@ -77,6 +89,9 @@ function getPropertyValueRenderer(x: ISearchResult): JSX.Element {
           {obj.total_asmt}
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button onClick={() => setMapCenter(obj)}>Go To</Button>
+      </CardActions>
     </Card>
   );
 }
