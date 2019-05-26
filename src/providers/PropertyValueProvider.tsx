@@ -4,7 +4,6 @@ import {
 } from '../components/search/search-list/SearchListComponent';
 import { getPropertyValues } from '../services/data.services';
 import * as React from 'react';
-import { StringifyOptions } from 'querystring';
 import { Card, CardContent, Typography, CardActions, Button } from '@material-ui/core';
 import store from '../stores/store';
 import { SET_MAP_CENTER, SET_MAP_ZOOM } from '../stores/map/types';
